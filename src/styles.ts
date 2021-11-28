@@ -75,4 +75,5 @@ border: none;
 box-shadow: #091e4240 0px 1px 0px 0px;
 margin-bottom: 0.5rem;
 width: 100%;
+height: 2rem;
 `

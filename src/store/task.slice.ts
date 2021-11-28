@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { DragItem } from "../DragItems";
+import { findItemIndexById, moveItem } from "../utils/arrayutils";
 import { RootState } from "./store";
 
 type AppState = {
 	list: List[]
+	draggedItem?: DragItem | null
 }
 type List = {
   id: string;
@@ -29,7 +32,8 @@ const initialState: AppState = {
     id: "3",
     text: "Hoàn Thành",
     task: [],
-  },]
+  },],
+	draggedItem: null
 };
 
 export const TaskSlice = createSlice({
@@ -43,11 +47,24 @@ export const TaskSlice = createSlice({
 			const colIndex = state.list.findIndex(col => col.id === action.payload.colId)
 			state.list[colIndex].task.push(action.payload.task)
 		},
+    setDraggedItem: (state, action) => {
+      // state = {
+      //   ...state,
+      //   draggedItem: action.payload
+      // }
+      state.draggedItem = action.payload
+    },
+    moveColumn: (state, action) => {
+      const hoverIndex = findItemIndexById(state.list, action.payload.hoverId);
+      const draggedIndex = findItemIndexById(state.list, action.payload.draggedId)
+      state.list = moveItem(state.list, hoverIndex, draggedIndex)
+    }
   },
 });
 
 export const selectTaskList = (state: RootState): List[] => state.task.list;
+export const selectDraggedStatus= (state: RootState) => state.task.draggedItem;
 
-export const {addNewList, addNewTask} = TaskSlice.actions;
+export const {addNewList, addNewTask, moveColumn, setDraggedItem} = TaskSlice.actions;
 
 export default TaskSlice.reducer;
