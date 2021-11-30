@@ -34,7 +34,7 @@ const Home: React.FC = () => {
       {taskList.map((list) => (
         <Column text={list.text} id={list.id} key={list.id}>
           {list.task.map((task) => (
-            <Card key={task.id} text={task.text} />
+            <Card key={task.id} id={task.id} colId={list.id} text={task.text} />
           ))}
         </Column>
       ))}

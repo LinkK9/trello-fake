@@ -10,7 +10,6 @@ export const removeItemAtIndex = (array: any[], index: number ) => {
 export const insertItemAtIndex = (array: any[], item: any, index: number) => {
 	return [...array.slice(0, index), item ,...array.slice(index)]
 }
-
 export const moveItem = (array: any[], from: number, to: number) => {
 	const item = array[from];
 	return insertItemAtIndex(removeItemAtIndex(array, from), item, to)
