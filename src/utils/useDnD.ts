@@ -11,7 +11,7 @@ import {
 
 export const useItemDrag = (item: DragItem) => {
   const dispatch = useDispatch();
-  const [, drag] = useDrag(() => ({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: item.type,
     item: () => {
       dispatch(setDraggedItem(item));
@@ -20,13 +20,14 @@ export const useItemDrag = (item: DragItem) => {
     end: () => {
       dispatch(setDraggedItem(null));
     },
-    collect: (monitor) => {
-      if (monitor.isDragging()) {
-      }
+    collect: (monitor: any) => {
+      return {
+        isDragging: monitor.isDragging(),
+      };
     },
   }));
 
-  return { drag };
+  return { drag, isDragging };
 };
 
 export const useColumnDrop = (item: ColumnDragItem) => {

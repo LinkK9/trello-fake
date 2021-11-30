@@ -33,17 +33,18 @@ const Column: React.FC<ColumnProps> = ({ id, text, children }) => {
     id,
     title: text,
     type: "COLUMN",
-		child: !!children
   };
   const ref = useRef(null);
 
-  const { drag } = useItemDrag(item);
+  const { drag, isDragging } = useItemDrag(item);
   const { drop } = useColumnDrop(item);
+
+  const opacity = isDragging ? 0 : 1;
 
   drag(drop(ref));
 
   return (
-    <ColumnContainer ref={ref}>
+    <ColumnContainer ref={ref} opacity={opacity}>
       <ColumnTitle>{text}</ColumnTitle>
       {children}
       <AddNewItem toggleButtonText="+ Thêm thẻ" onAdd={handleAddTask} dark />

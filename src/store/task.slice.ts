@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CardDragItem, ColumnDragItem, DragItem } from "../DragItems";
-import {
-  findItemIndexById,
-  insertItemAtIndex,
-  moveItem,
-  removeItemAtIndex,
-} from "../utils/arrayutils";
+import { CardDragItem, ColumnDragItem } from "../DragItems";
+import { findItemIndexById, moveItem } from "../utils/arrayutils";
 import { RootState } from "./store";
 
 type AppState = {
@@ -32,7 +27,11 @@ const initialState: AppState = {
     {
       id: "2",
       text: "Đang Làm",
-      task: [{id: 'jsdgfads', text: '1'},{id: 'jsfads', text: '2'},{id: 'jasd2sfads', text: '3'} ],
+      task: [
+        { id: "jsdgfads", text: "1" },
+        { id: "jsfads", text: "2" },
+        { id: "jasd2sfads", text: "3" },
+      ],
     },
     {
       id: "3",

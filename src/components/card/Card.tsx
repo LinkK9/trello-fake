@@ -12,14 +12,20 @@ const Card = ({ id, colId, text }: CardProps) => {
   const ref = useRef(null);
   const item: CardDragItem = {
     id,
-		colId,
+    colId,
     text,
     type: "CARD",
   };
-  const { drag } = useItemDrag(item);
+  const { drag, isDragging } = useItemDrag(item);
   const { drop } = useCardDrop(item);
+
+  const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
-  return <CardContainer ref={ref}>{text}</CardContainer>;
+  return (
+    <CardContainer ref={ref} opacity={opacity}>
+      {text}
+    </CardContainer>
+  );
 };
 
 export default Card;

@@ -17,7 +17,7 @@ const NewItemForm = ({onAdd}: NewItemFormProps) => {
 		<NewItemFormContainer>
 			<NewItemInput ref={inputRef} value={text} onChange={e => setText(e.target.value)} onKeyPress={handleAddtext} />
 			<NewItemButton onClick={ () => onAdd(text)}>
-				Create
+				Thêm	
 			</NewItemButton>
 		</NewItemFormContainer>
 	)

@@ -4,6 +4,14 @@ type AddNewButtonProps = {
   dark?: boolean;
 };
 
+interface DragPreviewProps {
+  opacity?: number
+}
+
+export const DragPreviewContainer = styled.div<DragPreviewProps>`
+opacity: ${props => props.opacity};
+`;
+
 export const AppContainer = styled.div`
   display: flex;
   align-items: flex-start;
@@ -11,15 +19,16 @@ export const AppContainer = styled.div`
   height: 100vh;
   width: 100%;
   padding: 20px;
+  overflow-x: auto;
 `;
-export const ColumnContainer = styled.div`
+export const ColumnContainer = styled(DragPreviewContainer)`
   background-color: #ebecf0;
   width: 300px;
   min-height: 40px;
   margin-right: 20px;
   border-radius: 3px;
   padding: 8px 8px;
-  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 export const ColumnTitle = styled.div`
@@ -27,7 +36,7 @@ export const ColumnTitle = styled.div`
   font-weight: bold;
 `;
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(DragPreviewContainer)`
   background-color: #fff;
   cursor: pointer;
   margin-bottom: 0.5rem;
@@ -48,6 +57,7 @@ export const AddItemButton = styled.button<AddNewButtonProps>`
   color: ${(props) => (props.dark ? "#000" : "#fff")};
 	transition: background 85ms ease-in;
 	width: 100%;
+  flex-shrink: 0;
 	& :hover {
 		background-color: #ffffff52;
 	}
@@ -59,6 +69,7 @@ display: flex;
 flex-direction: column;
 width: 100%;
 align-items: flex-start;
+flex-shrink: 0;
 `
 export const NewItemButton = styled.button`
 background-color: #5aac44;

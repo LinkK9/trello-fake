@@ -2,7 +2,6 @@ export type ColumnDragItem = {
 	id: string
 	title: string
 	type: "COLUMN"
-	child: boolean
 }
 
 export type CardDragItem = {
