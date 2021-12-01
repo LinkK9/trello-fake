@@ -87,13 +87,47 @@ export const TaskSlice = createSlice({
       // Chèn thẻ vào cột target
       state.list[targetListIndex].task.splice(hoverItemIndex, 0, item);
     },
+
+    editTitleColumn: (state, action) => {
+      const {colId, newTitle} = action.payload
+      const index = findItemIndexById(state.list, colId)
+      state.list[index].text = newTitle
+    },
+
+    deleteColumn: (state, action) => {
+      const index = findItemIndexById(state.list, action.payload.id)
+      state.list.splice(index, 1);
+    },
+
+    editTaskName: (state, action) => {
+      const {colId, id, newTaskName} = action.payload
+      const colIndex = findItemIndexById(state.list, colId)
+      const cardIndex = findItemIndexById(state.list[colIndex].task, id)
+      state.list[colIndex].task[cardIndex].text = newTaskName
+    },
+
+    deleteTask: (state, action) => {
+      const {colId, id} = action.payload
+      const colIndex = findItemIndexById(state.list, colId)
+      const cardIndex = findItemIndexById(state.list[colIndex].task, id)
+      state.list[colIndex].task.splice(cardIndex, 1)
+    },
   },
 });
 
 export const selectTaskList = (state: RootState): List[] => state.task.list;
 export const selectDraggedStatus = (state: RootState) => state.task.draggedItem;
 
-export const { addNewList, addNewTask, moveColumn, setDraggedItem, moveCard } =
-  TaskSlice.actions;
+export const {
+  addNewList,
+  addNewTask,
+  moveColumn,
+  setDraggedItem,
+  moveCard,
+  editTitleColumn,
+  deleteColumn,
+  editTaskName,
+  deleteTask,
+} = TaskSlice.actions;
 
 export default TaskSlice.reducer;

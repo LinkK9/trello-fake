@@ -2,10 +2,15 @@ import { nanoid } from "nanoid";
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { ColumnDragItem } from "../../DragItems";
-import { addNewTask } from "../../store/task.slice";
+import {
+  addNewTask,
+  deleteColumn,
+  editTitleColumn,
+} from "../../store/task.slice";
 import { ColumnContainer, ColumnTitle } from "../../styles";
 import { useItemDrag, useColumnDrop } from "../../utils/useDnD";
 import AddNewItem from "../add-item/AddNewItem";
+import ModalEdit from "../modal-edit/ModalEdit";
 
 export type ColumnProps = {
   id: string;
@@ -29,6 +34,19 @@ const Column: React.FC<ColumnProps> = ({ id, text, children }) => {
     );
   };
 
+  const handleEditTitle = (text: string) => {
+    dispatch(
+      editTitleColumn({
+        colId: id,
+        newTitle: text,
+      })
+    );
+  };
+
+  const handleDeleteColumn = () => {
+    dispatch(deleteColumn({ id }));
+  };
+
   const item: ColumnDragItem = {
     id,
     title: text,
@@ -45,7 +63,16 @@ const Column: React.FC<ColumnProps> = ({ id, text, children }) => {
 
   return (
     <ColumnContainer ref={ref} opacity={opacity}>
-      <ColumnTitle>{text}</ColumnTitle>
+      <ColumnTitle>
+        {text}
+        <ModalEdit
+          typeItem="Danh sách"
+          textVal={text}
+          buttonVal="⋯"
+          onEdit={handleEditTitle}
+          onDelete={handleDeleteColumn}
+        />
+      </ColumnTitle>
       {children}
       <AddNewItem toggleButtonText="+ Thêm thẻ" onAdd={handleAddTask} dark />
     </ColumnContainer>
