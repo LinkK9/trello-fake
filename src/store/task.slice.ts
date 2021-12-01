@@ -22,15 +22,16 @@ const initialState: AppState = {
     {
       id: "1",
       text: "ToDo",
-      task: [],
+      task: [
+        { id: "jsdgfads", text: "Master ReactJs" },
+      ],
     },
     {
       id: "2",
       text: "Đang Làm",
       task: [
-        { id: "jsdgfads", text: "1" },
-        { id: "jsfads", text: "2" },
-        { id: "jasd2sfads", text: "3" },
+        { id: "jswdfads", text: "Học React" },
+        { id: "jsfads", text: "Học TypeScript" },
       ],
     },
     {
@@ -115,8 +116,8 @@ export const TaskSlice = createSlice({
   },
 });
 
-export const selectTaskList = (state: RootState): List[] => state.task.list;
-export const selectDraggedStatus = (state: RootState) => state.task.draggedItem;
+export const selectTaskList = (state: RootState): List[] => state.list;
+export const selectDraggedStatus = (state: RootState) => state.draggedItem;
 
 export const {
   addNewList,

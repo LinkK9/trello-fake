@@ -7,12 +7,17 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { PersistGate } from "redux-persist/integration/react";
+import persistStore from "redux-persist/es/persistStore";
 
+let persistor = persistStore(store);
 ReactDOM.render(
   <DndProvider backend={HTML5Backend}>
-  <Provider store={store}>
-    <App />
-  </Provider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
   </DndProvider>,
   document.getElementById("root")
 );
