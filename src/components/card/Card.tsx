@@ -45,7 +45,9 @@ const Card = ({ id, colId, text }: CardProps) => {
   const { drop } = useCardDrop(item);
 
   const opacity = isDragging ? 0 : 1;
+
   drag(drop(ref));
+
   return (
     <CardContainer ref={ref} opacity={opacity}>
       {text}

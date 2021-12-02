@@ -7,8 +7,10 @@ type AddNewItemProps = {
   toggleButtonText: string;
   dark?: boolean;
 };
+
 const AddNewItem = (props: AddNewItemProps) => {
   const [showForm, setShowForm] = useState(false);
+
   const { onAdd, toggleButtonText, dark } = props;
 
   if (showForm) {

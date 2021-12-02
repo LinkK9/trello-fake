@@ -19,6 +19,7 @@ export type ColumnProps = {
 
 const Column: React.FC<ColumnProps> = ({ id, text, children }) => {
   const dispatch = useDispatch();
+
   const handleAddTask = (text: string) => {
     if (text === "") {
       return;

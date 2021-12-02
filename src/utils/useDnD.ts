@@ -10,7 +10,9 @@ import {
 } from "../store/task.slice";
 
 export const useItemDrag = (item: DragItem) => {
+
   const dispatch = useDispatch();
+
   const [{ isDragging }, drag] = useDrag(() => ({
     type: item.type,
     item: () => {
@@ -34,6 +36,7 @@ export const useColumnDrop = (item: ColumnDragItem) => {
   const draggedItem = useSelector(selectDraggedStatus);
   const listCol = useSelector(selectTaskList);
   const dispatch = useDispatch();
+
   const [, drop] = useDrop({
     accept: ["COLUMN", "CARD"],
     hover() {
@@ -72,6 +75,7 @@ export const useColumnDrop = (item: ColumnDragItem) => {
 export const useCardDrop = (item: CardDragItem) => {
   const draggedItem = useSelector(selectDraggedStatus);
   const dispatch = useDispatch();
+
   const [, drop] = useDrop({
     accept: item.type,
     hover() {
