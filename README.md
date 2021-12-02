@@ -1,7 +1,7 @@
 # App Kanban-Board
 Đây là một ứng dụng kanban-board dựa trên những tính năng cơ bản của trello. 
 
-Project được làm với mục đích với mục đích để thử nghiệm và học thêm về TypeScript và redux-toolkit.
+Project được làm với mục đích để thử nghiệm và học thêm về TypeScript và redux-toolkit.
 
 Link demo sản phẩm: [https://linhtv29.github.io/trello-fake/](https://linhtv29.github.io/trello-fake/)
 
